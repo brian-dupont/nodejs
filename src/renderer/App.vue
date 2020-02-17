@@ -1,12 +1,18 @@
 <template>
-  <div id="app">
+  <div id='app'>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'to-do-desktop'
+    name: 'avlabeler',
+
+    data () {
+      return {
+  
+      }
+    }
   }
 </script>
 
