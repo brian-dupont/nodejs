@@ -1,9 +1,9 @@
 {
-  "name": "to-do-desktop",
+  "name": "avlabeler",
   "version": "0.0.1",
   "author": "Brian DuPont <briandupont87@gmail.com>",
   "description": "An electron-vue project",
-  "license": null,
+  "license": "",
   "main": "./dist/electron/main.js",
   "scripts": {
     "build": "node .electron-vue/build.js && electron-builder",
@@ -19,8 +19,8 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "build": {
-    "productName": "to-do-desktop",
-    "appId": "com.example.yourapp",
+    "productName": "avlabeler",
+    "appId": "com.adavalley.avlabeler",
     "directories": {
       "output": "build"
     },
@@ -46,7 +46,7 @@
       "icon": "build/icons/icon.icns"
     },
     "win": {
-      "icon": "build/icons/icon.ico"
+      "icon": "build/icons/printer.ico"
     },
     "linux": {
       "icon": "build/icons"

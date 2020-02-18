@@ -7,8 +7,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'todos-page',
-      component: require('@/components/ToDos').default
+      name: 'Index',
+      component: require('@/components/Index').default
     },
     {
       path: '*',
