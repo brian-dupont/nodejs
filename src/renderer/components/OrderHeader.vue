@@ -1,10 +1,10 @@
 <template>
   <div v-if="this.orderId > 0">
-    <h1>Job Order Number: {{ this.jobOrder.job_header_id }}</h1>
+    <h1><span v-text="this.order.order_type === 'job' ? 'Job Order' : 'PO'"></span> Number: {{ this.order.order_header_id }}</h1>
 
-    <h1>Item Number: {{ this.jobOrder.item_number }}</h1>
+    <h1>Item Number: {{ this.order.item_number }}</h1>
 
-    <h3>Print Request Id: {{ this.jobOrder.id }}</h3>
+    <!-- <h3>Print Request Id: {{ this.order.id }}</h3> -->
   </div>
 
   <div id="no-order" v-else>No Job Order Loaded</div>
@@ -13,7 +13,7 @@
 <script>
 export default {
   props: {
-    jobOrder: {
+    order: {
       type: Object,
       default: {}
     }
@@ -25,7 +25,7 @@ export default {
 
   computed: {
     orderId () {
-      return this.jobOrder ? this.jobOrder.job_header_id : null
+      return this.order ? this.order.order_header_id : null
     }
   }
 }
@@ -35,5 +35,7 @@ export default {
 #no-order {
   color: red;
   font-size: 28px;
+  font-weight: 700;
+  margin-top: 20px;
 }
 </style>

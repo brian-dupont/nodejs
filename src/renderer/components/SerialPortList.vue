@@ -4,7 +4,7 @@
 
     <button v-if="portsVisible" @click="hidePorts()">Hide Serial Ports</button>
 
-    <ul v-if="portsVisible">
+    <ul v-if="portsVisible" style='background-color: whitesmoke;'>
         <li class="serialport" @click="selectPort(port.path)" v-for="(port, index) in this.serialPorts" :key="index">{{ port.path }}</li>
     </ul>
 </div>
@@ -50,5 +50,13 @@ export default {
 <style scoped>
 .serialport:hover {
     cursor: pointer;
+}
+
+ul {
+  display: block;
+}
+
+ul > li {
+  margin-bottom: 5px;
 }
 </style>

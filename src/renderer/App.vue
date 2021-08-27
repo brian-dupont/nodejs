@@ -17,5 +17,8 @@
 </script>
 
 <style>
-  /* CSS */
+  #app {
+    height: 100%;
+    margin: 0px;
+  }
 </style>

@@ -1,7 +1,10 @@
 'use strict'
 
-import { app, BrowserWindow } from 'electron'
+const { app, BrowserWindow } = require('electron')
 const open = require('open')
+const fs = require('fs')
+const easylabelPath = 'C:\\LABEL\\easylabel.lnk'
+const { dialog } = require('electron')
 
 /**
  * Set `__static` path to static files in production
@@ -17,17 +20,20 @@ const winURL = process.env.NODE_ENV === 'development'
   : `file://${__dirname}/index.html`
 
 function createWindow () {
-  /**
-   * Initial window options
-   */
   mainWindow = new BrowserWindow({
-    height: 563,
+    height: 300,
+    width: 600,
+    minWidth: 500,
+    minHeight: 300,
+    maxHeight: 500,
+    maxWidth: 800,
     useContentSize: true,
-    width: 1000,
     webPreferences: {
       nodeIntegration: true,
-      nodeIntegrationInWorker: true
-    }
+      nodeIntegrationInWorker: true,
+      webviewTag: true
+    },
+    resizable: true
   })
 
   mainWindow.loadURL(winURL)
@@ -35,6 +41,14 @@ function createWindow () {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
+
+  if (fs.existsSync(easylabelPath)) {
+    open(easylabelPath)
+      .then(res => console.log('EasyLabel opened'))
+      .catch(err => console.log('Could not open EasyLabel', err))
+  } else {
+    console.log(dialog.showErrorBox('Could Not Open EasyLabel', 'Could not find a shortcut to easylabel.exe at location: ' + easylabelPath + '.  Easylabel is needed if you need to print out labels from a printer.'))
+  }
 }
 
 app.on('ready', createWindow)
@@ -50,10 +64,6 @@ app.on('activate', () => {
     createWindow()
   }
 })
-
-open('C:\\Program Files (x86)\\Tharo\\EASYLABEL 5.12.2.1612\\easylabel')
-  .then(res => console.log('EasyLabel opened'))
-  .catch(err => console.log('Could not open EasyLabel', err))
 
 /**
  * Auto Updater
